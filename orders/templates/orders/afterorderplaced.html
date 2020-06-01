@@ -1,0 +1,14 @@
+{% extends "orders/base.html" %}
+
+{% block title %}Your order is Placed{% endblock %}
+
+{% block numOfItemInShoppingCart %}{{numOfItemInShoppingCart}}{% endblock %}
+
+{% block username %}{{ user.username }}{% endblock %}
+
+{% block body %}
+
+<label for="">Your order is placed return to menu from here </label>
+<a href="{% url 'index' %}">Menu</a>
+
+{% endblock %}

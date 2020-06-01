@@ -1,0 +1,132 @@
+{% extends "orders/base.html" %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block username %}{{ user.username }}{% endblock %}
+
+{% block numOfItemInShoppingCart %}{{numOfItemInShoppingCart}}{% endblock %}
+
+{% block body %}
+
+<div class="resetcart">
+  <a href="{% url 'resetcart' %}">Reset shopping cart</a>
+</div>
+
+{% if Regular_Pizz_items|length %}
+<h1>Regular Pizza</h1>
+{% endif %}
+<table class="table">
+  <tbody>
+{%  for item in Regular_Pizz_items %}
+    <tr>
+      <td>
+        A {{item.type}} <span class="shoppingCartItemName">Regular Pizza</span> with <span>{{item.numToppings}}</span> Toppings {{item.toppings}}
+      </td>
+      <td>
+         ${{item.price}}
+      </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% if Sicilian_Pizza_items|length %}
+<h1>Sicilian Pizza</h1>
+<table class="table">
+  <tbody>
+{%  for item in Sicilian_Pizza_items %}
+<tr>
+  <td>
+    A {{item.type}} <span class="shoppingCartItemName">Sicilian Pizza</span> with <span>{{item.numToppings}}</span> Toppings {{item.toppings}}
+  </td>
+  <td>
+     ${{item.price}}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% if Subs_items|length %}
+<h1>Subs</h1>
+<table class="table">
+  <tbody>
+{%  for item in Subs_items %}
+<tr>
+  <td>
+    A {{item.type}} {{item.name}} {{item.extra_cheese}} <span class="shoppingCartItemName">Sub</span>
+  </td>
+  <td>
+     ${{item.price}}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% if Dinner_Platters_items|length %}
+<h1>Dinner Platters</h1>
+<table class="table">
+  <tbody>
+{%  for item in Dinner_Platters_items %}
+<tr>
+  <td>
+    A {{item.type}} {{item.name}} <span class="shoppingCartItemName">Dinner Platter</span>
+  </td>
+  <td>
+     ${{item.price}}
+  </td>
+</tr>
+
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% if Pasta_items|length %}
+<h1>Pastas</h1>
+<table class="table">
+  <tbody>
+{%  for item in Pasta_items %}
+<tr>
+  <td>
+     {{item.name}}
+  </td>
+  <td>
+     ${{item.price}}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% if Salads_items|length %}
+<h1>Salads</h1>
+<table class="table">
+  <tbody>
+{%  for item in Salads_items %}
+<tr>
+  <td>
+     {{item.name}}
+  </td>
+  <td>
+     ${{item.price}}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+<label for="Total Price">Total price = ${{total_price}}</label>
+{% if numOfItemInShoppingCart %}
+<form class="" action="{% url 'placeorder' %}" method="post">
+   {% csrf_token %}
+<button type="submit" id="placeorder" class="btn btn-primary">Confirm and Place Order</button>
+</form>
+{% endif %}
+
+{% endblock %}

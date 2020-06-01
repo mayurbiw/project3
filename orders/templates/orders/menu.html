@@ -1,0 +1,143 @@
+{% extends "orders/base.html" %}
+
+{% block title %}Menu{% endblock %}
+
+{% block numOfItemInShoppingCart %}{{numOfItemInShoppingCart}}{% endblock %}
+
+{% block username %}{{ user.username }}{% endblock %}
+
+{% block body %}
+<script>
+  var  Regular_Pizza =  JSON.parse('{{Regular_Pizza|safe}}');
+  var  Sicilian_Pizza =  JSON.parse('{{Sicilian_Pizza|safe}}');
+  var Subs  = JSON.parse('{{Subs|safe}}')
+  var Pasta = JSON.parse('{{Pasta|safe}}')
+  var Salads = JSON.parse('{{Salads|safe}}')
+  var Dinner_Platters = JSON.parse('{{Dinner_Platters|safe}}')
+</script>
+<h2 class="Menu_heading">Menu</h2>
+<div class="Menu_Main_Div">
+
+  <label for="" class="ItemHeading">Regular Pizza</label>
+  <table class="table">
+  <tbody id="Regular_Pizza_table">
+  </tbody>
+  <tr>
+    <td>
+      <input type="radio" id="large" name="pizzaSize" class="Regular_Pizza_Size" value="Large">
+      <label for="Large pizza">Large</label>
+      <input type="radio" id="small" name="pizzaSize" class="Regular_Pizza_Size" value="Small">
+      <label for="Small Pizza">Small</label>
+    </td>
+    <td>
+      No Extra toppings [only Cheese]  <input type="checkbox" name="" class="Regular_Pizza_Toppings" value="Cheese">
+      &nbsp;&nbsp;
+      Special [Set of 5 tppings]  <input type="checkbox" name="" class="Regular_Pizza_Toppings" value="Special">
+      &nbsp;&nbsp;
+      {% for t in Toppings %}
+      {% if  forloop.counter0|divisibleby:4 %}
+      <br>
+      {% endif %}
+      {{ t.name }} <input type="checkbox" class="Regular_Pizza_Toppings" id="{{ t.name }}" name="{{ t.name }}" value="{{ t.name }}">
+      &nbsp;&nbsp;
+      {% endfor %}
+    </td>
+    <td id="Regular_Pizza_price">
+      $0
+    </td>
+    <td><button type="button" id="addintoshoppingcart" class="addbuttonstyle addintoshoppingcart btn btn-primary">Add</button></td>
+  </tr>
+  </table>
+  <br><br>
+
+
+<!--  Sicilian Pizza  -->
+  <label for="" class="ItemHeading">Sicilian Pizza</label>
+  <table class="table">
+
+  <tbody id="Sicilian_Pizza_table">
+  </tbody>
+  <tr>
+    <td>
+      <input type="radio" id="large" name="pizzaSize" class="Sicilian_Pizza_Size" value="Large">
+      <label for="Large pizza">Large</label>
+      <input type="radio" id="small" name="pizzaSize" class="Sicilian_Pizza_Size" value="Small">
+      <label for="Small Pizza">Small</label>
+    </td>
+
+    <td>
+      No Extra toppings [only Cheese]  <input type="checkbox" name="" class="Sicilian_Pizza_Toppings" value="Cheese">
+      &nbsp;&nbsp;
+      Special [Set of 5 tppings]  <input type="checkbox" name="" class="Sicilian_Pizza_Toppings" value="Special">
+      &nbsp;&nbsp;
+      {% for t in Toppings %}
+      {% if  forloop.counter0|divisibleby:4 %}
+      <br>
+      {% endif %}
+      {{ t.name }} <input type="checkbox" class="Sicilian_Pizza_Toppings" id="{{ t.name }}" name="{{ t.name }}" value="{{ t.name }}">
+      &nbsp;&nbsp;
+      {% endfor %}
+    </td>
+    <td id="Sicilian_Pizza_price">
+      $0
+    </td>
+    <td><button type="button" id="addintoshoppingcart" class="addbuttonstyle addintoshoppingcart btn btn-primary"> Add</button></td>
+  </tr>
+  </table>
+
+  <!-- Subs -->
+
+  <br>
+  <label for="" class="ItemHeading">Subs</label>
+  &nbsp;&nbsp;
+  <label for="Put Extra cheese">Put Extra cheese</label>
+  <input type="checkbox" name="extra_cheese" id="extra_cheese" class="extra_cheese" value="yes">
+
+  <br>
+  <label for="">Select your Sub Size - </label>
+  <label for="size">Large</label>
+  <input type="radio" name="size" class="subsize" value="Large">
+  <label for="size">Small</label>
+  <input type="radio" name="size" class="subsize" value="Small">
+
+<table class="table">
+<tbody id="subtable">
+</tbody>
+</table>
+
+
+<!-- Pastas -->
+  <br>
+  <label for="" class="ItemHeading">Pasta</label>
+  <table class="table">
+  <tbody id="Pasta_table">
+  </tbody>
+  </table>
+
+
+<!-- Salads -->
+  <label for="" class="ItemHeading">Salads</label>
+  <br>
+<table class="table">
+<tbody id="Salad_table">
+</tbody>
+</table>
+
+<!-- Dinner Platters -->
+  <br>
+  <label for="" class="ItemHeading">Dinner Platters</label>
+  <br>
+  <label for="">Select your Dinner Platter Size -> </label>
+  <label for="size">Large</label>
+  <input type="radio" name="size" class="dinner_platter_size" value="Large">
+  <label for="size">Small</label>
+  <input type="radio" name="size" class="dinner_platter_size" value="Small">
+
+  <table class="table">
+  <tbody id="dinner_platter_table">
+  </tbody>
+  </table>
+
+</div>
+<!-- -->
+{% endblock %}

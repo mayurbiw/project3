@@ -1,0 +1,57 @@
+.Greeding{
+  margin-left: 40%;
+}
+
+.Menu_heading{
+  margin-left: 45%;
+}
+
+.Greeding, .logout{
+  display: inline;
+}
+
+.Menu_Main_Div{
+  margin-top: 3%;
+  margin-left: 7%;
+}
+
+.labelPrice{
+  margin-left: 50%;
+}
+
+.ItemHeading{
+  color: #e254ff;
+  font-style: oblique;
+  font-family: cursive;
+  font-size: 30px;
+}
+
+.Regular_Pizza_Toppings{
+  font-style: oblique;
+}
+
+.username {
+  padding-left: 5px;
+  font-size: 25px;
+  font-family: cursive;
+}
+
+.logout{
+  color: #ffffff;
+  font-size: 15px;
+  padding-left: 25px;
+}
+.addbuttonstyle{
+  background-color: #aa00ff;
+  border-color: #ffffff;
+}
+.addbuttonstyle:hover{
+  background-color: #7200ca;
+}
+.shoppingCartItemName{
+color: #aa00ff;
+}
+
+.resetcart{
+float: right;
+}

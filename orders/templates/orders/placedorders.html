@@ -1,0 +1,44 @@
+{% load static %}
+<html>
+<head>
+          <title>Placed Orders</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+          <link rel="stylesheet" href="{% static 'orders/styles.css' %}"/>
+          <script src="{% static 'orders/admin.js' %}"></script>
+          <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Placed orders</h1>
+
+
+<table class="table">
+<tbody id="Regular_Pizza_table">
+</tbody>
+<tr>
+  <td>Order id</td>
+  <td>Item Id</td>
+  <td>Iteam Type</td>
+  <td>Topping 1</td>
+  <td>Topping 2</td>
+  <td>Topping 3</td>
+  <td>Extra Cheese</td>
+  <td>Completed</td>
+</tr>
+{%  for item in items %}
+<tr>
+  <td>{{ item.id }}</td>
+  <td>{{ item.item_id }}</td>
+  <td> {{ item.itemtype }}</td>
+  <td> {%if item.itemtype == "Regular Pizza" or item.itemtype == "Sicilian Pizza" %} {{ item.topping1 }} {%else%} Not applicable {%endif%}</td>
+  <td>{%if item.itemtype == "Regular Pizza" or item.itemtype == "Sicilian Pizza" %} {{ item.topping2 }} {%else%} Not applicable {%endif%}</td>
+  <td>{%if item.itemtype == "Regular Pizza" or item.itemtype == "Sicilian Pizza" %} {{ item.topping3 }} {%else%} Not applicable {%endif%}</td>
+  <td>{{item.extra_cheese}}</td>
+  <td>{% if item.completed %}  Yes  {% else %} <button data-orderid = "{{ item.id }}" type="button" class="completeOrder btn btn-primary" id="completeOrder" name="button">Mark as completed</button>{% endif %}
+</tr>
+{% endfor %}
+</table>
+
+</body>
